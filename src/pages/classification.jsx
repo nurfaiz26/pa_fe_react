@@ -19,7 +19,7 @@ const Classification = () => {
             ctscan: "",
             label: "",
             classification: "",
-            probability: ""
+            accuracy: ""
         }
     )
 
@@ -36,7 +36,7 @@ const Classification = () => {
                         ctscan: data.ctscan,
                         label: data.label,
                         classification: data.classification,
-                        probability: data.probability
+                        accuracy: data.accuracy
                     }
                 )
                 setLoading(false)
@@ -75,12 +75,12 @@ const Classification = () => {
             ctscan,
             label,
             classification,
-            probability,
+            accuracy,
         } = input
 
 
         if (input.classification !== 'Nonctscan') {
-            axios.post(`${baseUrl}/class-results`, { patientId, doctorId, date, ctscan, label, classification, probability })
+            axios.post(`${baseUrl}/class-results`, { patientId, doctorId, date, ctscan, label, classification, accuracy })
                 .then((res) => {
                     setError(null)
                     navigate(`/dashboard`)
@@ -144,7 +144,7 @@ const Classification = () => {
                     setInput(
                         {
                             ctscan: await djangoRes.data.ctscanUrl,
-                            probability: await djangoRes.data.probability,
+                            accuracy: await djangoRes.data.accuracy,
                             classification: await djangoRes.data.result,
                             doctorId: userId,
                             date: dateNow
@@ -260,7 +260,7 @@ const Classification = () => {
                                         </> :
                                         <>
                                             <div className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                                                {`: ${input.classification} ${parseFloat(input.probability).toFixed(2)}%`}
+                                                {`: ${input.classification} ${parseFloat(input.accuracy).toFixed(2)}%`}
                                             </div>
                                         </>
                                     }

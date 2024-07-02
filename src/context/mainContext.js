@@ -7,7 +7,7 @@ export const MainContext = createContext()
 
 export const MainProvider = (props) => {
     // Online Server
-    // const baseUrl = "https://ichwunden-api.faiz-web.my.id"
+    // const baseUrl = "https://api.ichwunden.my.id"
     // const djangoBaseUrl = "https://smart-top-dory.ngrok-free.app/api"
     // Local Server
     const baseUrl = "http://localhost:4000"

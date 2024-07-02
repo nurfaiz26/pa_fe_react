@@ -10,7 +10,7 @@ const Landing = () => {
     const [classRes, setClassResult] = useState(
         {
             ctscanUrl: "",
-            probability: "",
+            accuracy: "",
             result: ""
         }
     )
@@ -57,7 +57,7 @@ const Landing = () => {
                 setClassResult(
                     {
                         ctscanUrl: await djangoRes.data.ctscanUrl,
-                        probability: await djangoRes.data.probability,
+                        accuracy: await djangoRes.data.accuracy,
                         result: await djangoRes.data.result
                     }
                 )
@@ -140,7 +140,7 @@ const Landing = () => {
                                                 {classRes.result}
                                             </div>
                                             <div className=" font-semibold text-center sm:text-lg lg:text-xl">
-                                                {parseFloat(classRes.probability).toFixed(2)}%
+                                                {parseFloat(classRes.accuracy).toFixed(2)}%
                                             </div>
                                         </>
                                     }

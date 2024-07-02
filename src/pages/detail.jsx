@@ -14,7 +14,7 @@ const Detail = () => {
             ctscan: "",
             label: "",
             classification: "",
-            probability: ""
+            accuracy: ""
         }
     )
 
@@ -29,7 +29,7 @@ const Detail = () => {
                         ctscan: data.ctscan,
                         label: data.label,
                         classification: data.classification,
-                        probability: data.probability
+                        accuracy: data.accuracy
                     }
                 )
                 setLoading(false)
@@ -123,7 +123,7 @@ const Detail = () => {
                                             <div
                                                 className="block mb-2 text-sm text-gray-900 dark:text-white"
                                             >
-                                                {`: ${input.classification} (${parseFloat(input.probability).toFixed(2)}%)`}
+                                                {`: ${input.classification} (${parseFloat(input.accuracy).toFixed(2)}%)`}
                                             </div>
                                         </div>
                                         <div className="mt-2">
