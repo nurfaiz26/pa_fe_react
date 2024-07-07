@@ -77,27 +77,27 @@ const Landing = () => {
 
     return (
         <>
-            <div className="grid grid-cols-2">
-                <div className="my-auto mx-16">
-                    <div className="font-bold sm:text-2xl lg:text-5xl">
+            <div className="grid sm:grid-cols-2">
+                <div className="m-4 sm:my-auto">
+                    <div className="font-bold text-center text-lg sm:text-left sm:text-2xl lg:text-5xl">
                         INTRACRANIAL HEMORRHAGE {"(ICH)"} DETECTION WITH VISION TRANSFORMER APP
                     </div>
-                    <div className="mt-4 font-normal sm:text-lg lg:text-xl">
+                    <div className="mt-4 font-normal text-center text-l sm:text-start sm:text-lg lg:text-xl">
                         Membantu dokter dan ahli dalam proses klasifikasi ICH CT-Scan dengan metode Vision Transformer
                         Login untuk dapat menggunakan fitur lebih
                     </div>
                     <div className="mt-4">
                         <form className="" onSubmit={handleSubmit}>
-                            <div className="grid grid-cols-6">
+                            <div className="grid grid-cols-7">
                                 <input
-                                    className="col-span-5 sm:text-sm lg:text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
+                                    className="col-span-6 text-sm lg:text-lg text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400"
                                     id="file_input"
                                     type="file"
                                     accept="image/*"
                                     required
                                     onChange={handleChange}
                                 />
-                                <button type={"submit"} className="ms-auto sm:size-10 lg:size-12 p-2 text-white bg-secondary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
+                                <button type={"submit"} className="p-2 size-10 ms-auto lg:size-12 text-white bg-secondary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                     <img
                                         src={require('../assets/images/brain-icon.png')}
                                         alt="dashboard-img"
@@ -107,13 +107,13 @@ const Landing = () => {
                             </div>
                         </form>
                     </div>
-                    <button onClick={() => { navigate('/login') }} className="w-full mt-4 text-white bg-secondary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-lg text-lg px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
+                    <button onClick={() => { navigate('/login') }} className="w-full mt-4 h-10 lg:text-lg lg:h-12 text-white bg-secondary hover:bg-secondary-dark focus:ring-4 focus:outline-none focus:ring-primary-300 font-semibold rounded-lg text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">Login</button>
                 </div>
-                <div className="mx-auto my-10">
+                <div className="m-4 sm:m-10">
                     <img
                         src={require('../assets/images/dashboard-img.png')}
                         alt="dashboard-img"
-                        className="h-fit"
+                        className="w-full"
                     />
                 </div>
             </div>
@@ -127,7 +127,7 @@ const Landing = () => {
                                     <img
                                         src={classRes.ctscanUrl}
                                         alt="ctscan"
-                                        className="mx-auto rounded-lg sm:h-36 lg:h-64"
+                                        className="mx-auto rounded-lg h-24 sm:h-36 lg:h-48"
                                     />
                                     {String(classRes.result) === "Nonctscan" ?
                                         <>
@@ -148,7 +148,7 @@ const Landing = () => {
                                 </>
                                 :
                                 <>
-                                    <div className="absolute -translate-x-1/2 -translate-y-1/2 top-2/4 left-1/2">
+                                    <div className="flex flex-wrap justify-center">
                                         <div role="status">
                                             <svg
                                                 aria-hidden="true"

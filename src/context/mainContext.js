@@ -11,7 +11,9 @@ export const MainProvider = (props) => {
     // const djangoBaseUrl = "https://smart-top-dory.ngrok-free.app/api"
     // Local Server
     const baseUrl = "http://localhost:4000"
+    // const baseUrl = "http://192.168.1.10:4000"
     const djangoBaseUrl = "http://127.0.0.1:8000/api"
+    // const djangoBaseUrl = "http://192.168.1.10:8000/api"
     let navigate = useNavigate()
     let userId = Cookies.get('userId')
     const [dataUsers, setDataUsers] = useState(null)
