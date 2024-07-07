@@ -63,6 +63,9 @@ const Detail = () => {
                 .then((res) => {
                     navigate(`/detail/${id}`)
                     window.location.reload()
+                    alert("Update success!");
+                }).catch((error) => {
+                    alert("Update success! "  + error);
                 })
         }
 
@@ -75,7 +78,6 @@ const Detail = () => {
     if (error) {
         console.log(error)
     }
-
 
     return (
         <>

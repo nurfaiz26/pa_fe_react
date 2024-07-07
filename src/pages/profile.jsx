@@ -32,7 +32,7 @@ const Profile = () => {
                 setLoading(false)
             }).catch((error) => {
                 console.log(error)
-                setError("Update error")
+                setError("Update error!")
                 setLoading(false)
             })
         }
@@ -62,6 +62,9 @@ const Profile = () => {
             .then((res) => {
                 navigate(`/profile`)
                 window.location.reload()
+                alert("Update success!");
+            }).catch((error) => {
+                alert("Update failed " + error);
             })
     }
 
