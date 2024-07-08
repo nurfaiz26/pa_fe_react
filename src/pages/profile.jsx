@@ -17,11 +17,16 @@ const Profile = () => {
     const userId = Cookies.get('userId')
     const email = Cookies.get('email')
     const username = Cookies.get('username')
+    const token = Cookies.get('token')
 
     useEffect(() => {
         document.title = "Ichwunden - Profile"
         function fetctData() {
-            axios.get(`${baseUrl}/users/${userId}`).then((res) => {
+            axios.get(`${baseUrl}/users/${userId}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }).then((res) => {
                 let data = res.data.data[0]
                 setInput(
                     {
@@ -38,7 +43,7 @@ const Profile = () => {
         }
         fetctData()
 
-    }, [userId, baseUrl])
+    }, [userId, baseUrl, token])
 
     const handleChange = (event) => {
         let name = event.target.name
@@ -58,7 +63,11 @@ const Profile = () => {
             role
         } = input
 
-        axios.patch(`${baseUrl}/users/${userId}`, { name, role })
+        axios.patch(`${baseUrl}/users/${userId}`, { name, role }, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        })
             .then((res) => {
                 navigate(`/profile`)
                 window.location.reload()

@@ -2,9 +2,11 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MainContext } from "../context/mainContext";
 import axios from "axios";
+import Cookies from "js-cookie"
 
 const Detail = () => {
     let { id } = useParams()
+    const token = Cookies.get("token")
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const { baseUrl, navigate } = useContext(MainContext)
@@ -21,7 +23,11 @@ const Detail = () => {
     useEffect(() => {
         document.title = "Ichwunden - Detail"
         function fetctData() {
-            axios.get(`${baseUrl}/class-results/${id}`).then((res) => {
+            axios.get(`${baseUrl}/class-results/${id}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }).then((res) => {
                 let data = res.data.data[0]
                 setInput(
                     {
@@ -40,7 +46,7 @@ const Detail = () => {
         }
         fetctData()
 
-    }, [id, baseUrl])
+    }, [id, baseUrl, token])
 
     const handleChange = (event) => {
         let name = event.target.name
@@ -59,7 +65,11 @@ const Detail = () => {
 
 
         if (id !== undefined) {
-            axios.patch(`${baseUrl}/class-results/${id}`, { label })
+            axios.patch(`${baseUrl}/class-results/${id}`, { label }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
                 .then((res) => {
                     navigate(`/detail/${id}`)
                     window.location.reload()

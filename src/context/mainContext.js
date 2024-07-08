@@ -16,6 +16,7 @@ export const MainProvider = (props) => {
     // const djangoBaseUrl = "http://192.168.1.10:8000/api"
     let navigate = useNavigate()
     let userId = Cookies.get('userId')
+    let token = Cookies.get('token')
     const [dataUsers, setDataUsers] = useState(null)
     const [dataUser, setDataUser] = useState(null)
     const [dataClassifications, setDataClassifications] = useState(null)
@@ -26,31 +27,43 @@ export const MainProvider = (props) => {
     useEffect(() => {
 
         if (fetchStatus === true) {
+            if (token !== undefined) {
+                axios.get(`${baseUrl}/users`, {
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                }).then((res) => {
+                    setDataUsers([...res.data.data])
+                }).catch((error) => {
+                    console.log(error)
+                })
 
-            axios.get(`${baseUrl}/users`).then((res) => {
-                setDataUsers([...res.data.data])
-            }).catch((error) => {
-                console.log(error)
-            })
+                axios.get(`${baseUrl}/class-results`, {
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                }).then((res) => {
+                    setDataClassifications([...res.data.data])
+                }).catch((error) => {
+                    console.log(error)
+                })
 
-            axios.get(`${baseUrl}/class-results`).then((res) => {
-                setDataClassifications([...res.data.data])
-            }).catch((error) => {
-                console.log(error)
-            })
+                axios.get(`${baseUrl}/patients`, {
+                    headers: {
+                        "Authorization": "Bearer " + token
+                    }
+                }).then((res) => {
+                    setDataPatients([...res.data.data])
+                }).catch((error) => {
+                    console.log(error)
+                })
+            }
 
-            axios.get(`${baseUrl}/patients`).then((res) => {
-                setDataPatients([...res.data.data])
-            }).catch((error) => {
-                console.log(error)
-            })
-
-            
             setFetchStatus(false)
         }
 
 
-    }, [fetchStatus, setFetchStatus, userId, dataUser])
+    }, [fetchStatus, setFetchStatus, userId, dataUser, token])
 
 
     return (

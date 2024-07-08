@@ -7,6 +7,7 @@ const Dashboard = () => {
     const { dataClassifications, baseUrl, navigate, setCurrentId } = useContext(MainContext)
 
     const userId = Cookies.get("userId")
+    const token = Cookies.get("token")
 
     const [dataUser, setDataUser] = useState(
         {
@@ -20,7 +21,11 @@ const Dashboard = () => {
     useEffect(() => {
         document.title = "Ichwunden - Dashboard"
 
-        axios.get(`${baseUrl}/users/${userId}`).then((res) => {
+        axios.get(`${baseUrl}/users/${userId}`, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }).then((res) => {
             let data = res.data.data[0]
             setDataUser(
                 {
@@ -33,11 +38,15 @@ const Dashboard = () => {
         }).catch((error) => {
             console.log(error)
         })
-    }, [baseUrl, userId])
+    }, [baseUrl, userId, token])
 
     const handleDelete = (event) => {
         let idData = parseInt(event.target.value)
-        axios.delete(`${baseUrl}/class-results/${idData}`).then((res) => {
+        axios.delete(`${baseUrl}/class-results/${idData}`, {
+            headers: {
+                'Authorization': 'Bearer ' + token
+            }
+        }).then((res) => {
             window.location.reload()
         })
     }

@@ -45,6 +45,7 @@ const Login = () => {
                     Cookies.set('name', data.name)
                     Cookies.set('email', data.email)
                     navigate('/dashboard')
+                    window.location.reload()
                 }).catch(error => {
                     console.log(error)
                     setError("Credentials not valid!")
