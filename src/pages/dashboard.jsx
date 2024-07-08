@@ -142,13 +142,8 @@ const Dashboard = () => {
                                             return (
                                                 <>
                                                     <tr className="bg-primary border-b dark:bg-gray-800 dark:border-gray-700">
-                                                        <th
-                                                            scope="row"
-                                                            className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
-                                                        >
-                                                            {res.id}
-                                                        </th>
                                                         <td className="px-6 py-4 text-black">{res.date}</td>
+                                                        <td className="px-6 py-4 text-black">{res.patientId}</td>
                                                         <td className="px-6 py-4 text-black">{res.patientName}</td>
                                                         <td className="px-6 py-4 text-black">
                                                             <img src={res.ctscan} alt="ct-scan" className="h-auto max-w-24 rounded-lg" />
