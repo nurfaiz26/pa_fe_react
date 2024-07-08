@@ -67,7 +67,7 @@ const Dashboard = () => {
                     <p className="font-bold text-xl ms-3">Hi, {String(dataUser.role) === "Doctor" ? "Dr. " : ""} {dataUser.name}!</p>
                     <div className="grid lg:grid-cols-3 m-2">
                         <div className="lg:col-span-2">
-                            <Search from={'beranda'} />
+                            <Search from={'dahsboard'} />
                         </div>
                     </div>
                     <table className="w-full text-sm text-left my-3 rtl:text-right text-gray-500 dark:text-gray-400">
