@@ -13,6 +13,7 @@ const Detail = () => {
     const [input, setInput] = useState(
         {
             patientName: "",
+            patientId: "",
             ctscan: "",
             label: "",
             classification: "",
@@ -32,6 +33,7 @@ const Detail = () => {
                 setInput(
                     {
                         patientName: data.patientName,
+                        patientId: data.patientId,
                         ctscan: data.ctscan,
                         label: data.label,
                         classification: data.classification,
@@ -124,6 +126,18 @@ const Detail = () => {
                                                 className="block mb-2 text-sm text-gray-900 dark:text-white"
                                             >
                                                 {`: ${input.patientName}`}
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <div
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                            >
+                                                Patient ID
+                                            </div>
+                                            <div
+                                                className="block mb-2 text-sm text-gray-900 dark:text-white"
+                                            >
+                                                {`: ${input.patientId}`}
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-2">

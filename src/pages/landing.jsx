@@ -78,7 +78,7 @@ const Landing = () => {
     return (
         <>
             <div className="grid sm:grid-cols-2">
-                <div className="m-4 sm:my-auto">
+                <div className="m-4 px-2 sm:my-auto sm:px-4 lg:px-6">
                     <div className="font-bold text-center text-lg sm:text-left sm:text-2xl lg:text-5xl">
                         INTRACRANIAL HEMORRHAGE {"(ICH)"} DETECTION WITH VISION TRANSFORMER APP
                     </div>

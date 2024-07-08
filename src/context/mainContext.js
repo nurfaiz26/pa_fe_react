@@ -23,6 +23,7 @@ export const MainProvider = (props) => {
     const [dataPatients, setDataPatients] = useState(null)
     const [fetchStatus, setFetchStatus] = useState(true)
     const [currentId, setCurrentId] = useState(-1)
+    const [search, setSearch] = useState("")
 
     useEffect(() => {
 
@@ -65,6 +66,11 @@ export const MainProvider = (props) => {
 
     }, [fetchStatus, setFetchStatus, userId, dataUser, token])
 
+    const handleSearch = (event) => {
+        setSearch("")
+        setSearch(event.target.value)
+    }
+
 
     return (
         <MainContext.Provider value={
@@ -83,7 +89,10 @@ export const MainProvider = (props) => {
                 currentId,
                 setCurrentId,
                 dataClassifications,
-                setDataClassifications
+                setDataClassifications,
+                search,
+                setSearch,
+                handleSearch
             }
         }>
             {props.children}
