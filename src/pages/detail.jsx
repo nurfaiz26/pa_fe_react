@@ -2,15 +2,18 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { MainContext } from "../context/mainContext";
 import axios from "axios";
+import Cookies from "js-cookie"
 
 const Detail = () => {
     let { id } = useParams()
+    const token = Cookies.get("token")
     const [loading, setLoading] = useState(true)
     const [error, setError] = useState(null)
     const { baseUrl, navigate } = useContext(MainContext)
     const [input, setInput] = useState(
         {
             patientName: "",
+            patientId: "",
             ctscan: "",
             label: "",
             classification: "",
@@ -21,11 +24,16 @@ const Detail = () => {
     useEffect(() => {
         document.title = "Ichwunden - Detail"
         function fetctData() {
-            axios.get(`${baseUrl}/class-results/${id}`).then((res) => {
+            axios.get(`${baseUrl}/class-results/${id}`, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            }).then((res) => {
                 let data = res.data.data[0]
                 setInput(
                     {
                         patientName: data.patientName,
+                        patientId: data.patientId,
                         ctscan: data.ctscan,
                         label: data.label,
                         classification: data.classification,
@@ -40,7 +48,7 @@ const Detail = () => {
         }
         fetctData()
 
-    }, [id, baseUrl])
+    }, [id, baseUrl, token])
 
     const handleChange = (event) => {
         let name = event.target.name
@@ -59,10 +67,17 @@ const Detail = () => {
 
 
         if (id !== undefined) {
-            axios.patch(`${baseUrl}/class-results/${id}`, { label })
+            axios.patch(`${baseUrl}/class-results/${id}`, { label }, {
+                headers: {
+                    'Authorization': 'Bearer ' + token
+                }
+            })
                 .then((res) => {
                     navigate(`/detail/${id}`)
                     window.location.reload()
+                    alert("Update success!");
+                }).catch((error) => {
+                    alert("Update success! "  + error);
                 })
         }
 
@@ -75,7 +90,6 @@ const Detail = () => {
     if (error) {
         console.log(error)
     }
-
 
     return (
         <>
@@ -112,6 +126,18 @@ const Detail = () => {
                                                 className="block mb-2 text-sm text-gray-900 dark:text-white"
                                             >
                                                 {`: ${input.patientName}`}
+                                            </div>
+                                        </div>
+                                        <div className="grid grid-cols-2">
+                                            <div
+                                                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+                                            >
+                                                Patient ID
+                                            </div>
+                                            <div
+                                                className="block mb-2 text-sm text-gray-900 dark:text-white"
+                                            >
+                                                {`: ${input.patientId}`}
                                             </div>
                                         </div>
                                         <div className="grid grid-cols-2">

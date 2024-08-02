@@ -15,7 +15,7 @@ module.exports = {
       "secondary-dark": "#DF423D",
       "tersier": "#7F211E",
       "tersier-dark": "#5F211E"
-    }
+    },
   },
   plugins: [
     flowbite.plugin()

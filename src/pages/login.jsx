@@ -45,6 +45,7 @@ const Login = () => {
                     Cookies.set('name', data.name)
                     Cookies.set('email', data.email)
                     navigate('/dashboard')
+                    window.location.reload()
                 }).catch(error => {
                     console.log(error)
                     setError("Credentials not valid!")
@@ -57,7 +58,7 @@ const Login = () => {
 
     return (
         <>
-            <div className="grid grid-cols-2">
+            <div className="grid sm:grid-cols-2">
                 <div className="flex flex-col items-center justify-center px-6 py-8 mx-auto lg:py-0">
                     <div className="w-full bg-white rounded-lg shadow dark:border md:mt-0 xl:p-0 dark:bg-gray-800 dark:border-gray-700">
                         <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -117,10 +118,11 @@ const Login = () => {
                         </div>
                     </div>
                 </div>
-                <div className="mx-2 my-10">
-                    <img 
+                <div className="m-6 lg:m-10">
+                    <img
                         src={require('../assets/images/dashboard-img.png')}
                         alt="dashboard-img"
+                        className="w-full"
                     />
                 </div>
             </div>
